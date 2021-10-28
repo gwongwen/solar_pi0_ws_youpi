@@ -1,0 +1,1 @@
+docker run -p 1883:1883 --detach --restart unless-stopped --name mosquitto mjenz/rpi-mosquitto
