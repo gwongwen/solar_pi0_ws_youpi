@@ -10,7 +10,6 @@ sudo /bin/bash /home/pi/solar_pi0_ws_tutorial/03-src_project_v0/raspi-side/on_in
 ### Application (receiver) make the raspi able to read messages sent by the server
 As the downlink with lora is not a possibility, the lora node will retrieve the last message from an mqtt server that will be deployed on the Server that controlls the device. In this MQTT client, it will be configured to retain the last message until consumed.
 
-Messages: (il y a la possibilité que je rajoute d'autres après quand je ferai l'intégration)
 - Sleep time reconfiguration: Time to the next time the board will turn herself on. Thiw will be used by the on_init script. The message will follow the structure: ***reconfig_sleep_time;15*** being the second parameter the time in seconds.
 
 
@@ -20,8 +19,6 @@ To begin, you need to install docker and mqtt with the scripts on **02-initial_c
 ### Gateway (receiver) 
 To configure the raspberry as a gateway, you have to follow the instructions and install the requirements in **02-initial_configuration/raspberry/gateway**. Then, to run the service, execute the file in **03-src_project/raspi-side/gateway_mode/run_gateway_node.sh** 
 
-(A voir comment on integre cela dans le on_init en fonction des use case)
 ### TO DO:
-### make the on_init script
+### improve the on_init script
 ### deactivate wifi and every ssh method(more lightweight) at the end and only connect when you want to access the mqtt to read more updates
-### tuto configurer ttn gateway maybe detailler un peu plus pour le gateway aussi
