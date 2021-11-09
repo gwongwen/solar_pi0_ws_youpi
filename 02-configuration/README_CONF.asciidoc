@@ -2,18 +2,18 @@
 
 === Step 1 : Installation of requirements and dependencies
 
-The script install can be found in the 02-configuration folder. This
+The script install can be found in the *02-configuration folder*. This
 script will enable the I2C and SPI interface, install the BMP388
 requirements, the LoRa Radio Bonnet requirements and the Solar Pi
 Platter drivers (talkpp and ppd). When the script will be done, we
 recommend you to test both the LoRa module and the BMP388 sensor to
 verify that everything is working correctly. All tests can be found in
-the 01-hardware folder. We invite you to read the README_HARD.md file
-present in this folder which describes hardware and software of this
-project.
+the *01-hardware folder*. We invite you to read the *README_HARD.md*
+file present in this folder which describes hardware and software of
+this project.
 
-To run as sudo user, tape : sudo .pp_config_install.sh or sudo bash
-pp_config_install.sh
+To run as sudo user, tape : *sudo \.pp_config_install.sh* or *sudo bash
+pp_config_install.sh*
 
 === Step 2 : Configuration of the TTN (The Things Network)
 
@@ -27,7 +27,7 @@ and an application..
 You will need to register a new device in your application (with ABP
 activation method). Once this is done, retain the TTN Device Address(4
 Bytes), the TTN Network Key(16 Bytes) and the TTN Application Key (16
-Bytess). You also have to make sure that the activation method is ABP.
+Bytes). You also have to make sure that the activation method is ABP.
 
 ....
 - After you account was created, you have to create a new application : Name of this application --> solar-pi0-ws-app
@@ -52,7 +52,7 @@ decripted.
 ==== Application (receiver)
 
 As the downlink with LoRa is not a possibility, the LoRa node will
-retrieve the last message from an mqtt server that will be deployed on
+retrieve the last message from an MQTT server that will be deployed on
 the server that controlls the device. In this MQTT client, it will be
 configured to retain the last message until consumed.
 
@@ -64,11 +64,10 @@ The message will follow the structure: reconfig_sleep_time;15 being the second p
 === Step 3 : Configuration of the Pi Zero W as a gateway
 
 To configure the raspberry as a gateway, you have to install the
-requirements script *gtw_comfig_install* in
-*02-configuration/raspberry/gateway*.
+requirements script in *02-configuration/raspberry/gateway*.
 
-To run as sudo user, tape : sudo .pp_gtw_config_install.sh or sudo bash
-gtw_config_install.sh
+To run as sudo user, tape : *sudo \.pp_gtw_config_install.sh* or *sudo
+bash gtw_config_install.sh*
 
 Then, to run the service, execute the file in
 *03-run/raspi_side/gateway_mode/run_gateway_node.sh*.
