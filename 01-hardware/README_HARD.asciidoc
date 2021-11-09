@@ -9,6 +9,7 @@ low-impedance devices like common USB chargers and high-impedance
 devices like solar panels. The Solar Pi Platter allows the Pi Zero to be
 used in a wide variety of applications ranging from solar-powered remote
 data acquisition systems to battery-backed file servers. See more and
+buy: http://danjuliodesigns.com/products/solar_pi_platter.html
 
 == Features of Solar Pi Platter board
 
