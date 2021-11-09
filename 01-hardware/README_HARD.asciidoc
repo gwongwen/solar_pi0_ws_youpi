@@ -8,7 +8,7 @@ allows for scheduled power cycling. Dual charging sources support both
 low-impedance devices like common USB chargers and high-impedance
 devices like solar panels. The Solar Pi Platter allows the Pi Zero to be
 used in a wide variety of applications ranging from solar-powered remote
-data acquisition systems to battery-backed file servers.
+data acquisition systems to battery-backed file servers. See more and
 
 == Features of Solar Pi Platter board
 
