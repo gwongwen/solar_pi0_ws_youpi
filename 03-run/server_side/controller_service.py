@@ -27,4 +27,3 @@ mqtt_client.connect()
 time.sleep(60)
 mqtt_client.close()
 
-#mirar como poder enviar msgs que vayan del servicio a la gateway
