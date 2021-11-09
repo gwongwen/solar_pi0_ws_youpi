@@ -2,7 +2,7 @@ import urllib.request
 import mqtt_client.mqtt_client
 import os,sys,time,traceback,argparse
 
-def connect_host(host='http://google.com'): #checks if there is internet access, if not it will not be able to reconfigure.
+def connect_host(host='http://google.com'): # checks if there is internet access, if not it will not be able to reconfigure.
     try:
         urllib.request.urlopen(host)
         return True
@@ -28,6 +28,6 @@ if(connect_host()):
         log.critical()
         traceback.print_tb(err.__traceback__)
 
-    time.sleep(10) #This will make the service be connected for 10 seconds then pass to the next instruction
+    time.sleep(10) # this will make the service be connected for 10 seconds then pass to the next instruction
 else:
     print("Couldn't connect to internet.")

@@ -5,7 +5,7 @@ from adafruit_tinylora.adafruit_tinylora import TTN, TinyLoRa
 from pathlib import Path
 import adafruit_bmp3xx
 
-# Updates the Sleep time on the environment and on the 
+# updates the sleep time on the environment and on the 
 # .env.dynamic file
 # PARAMS: 
 # - env-file: name of the file in which update the time value
@@ -13,17 +13,17 @@ import adafruit_bmp3xx
 # ATENTION: this method will crush the env_file and create another one
 # containing only that line
 #
-# RETRUN: None
+# RETURN: None
 def setNewSleepTime(env_file, value):
     dynamic_env_file = open(env_file, "w")
     dynamic_env_file.write("export SLEEPTIME = "+str(value))
     dynamic_env_file.close()
     os.environ[key] = value
 
-# Get the TTN key from the env and pass it to bytearray
+# get the TTN key from the env and pass it to bytearray
 # PARAMS: 
 # - key: key needed (must be on the .env file)
-# RETRUN: bytearray key value     
+# RETURN: bytearray key value     
 def getTTNKey(key):
     try:
         key_to_retrieve_string = os.getenv(key)
@@ -34,9 +34,9 @@ def getTTNKey(key):
         print(sys.exc_info())
         sys.exit()
 
-# Get the TTN country code as an string
+# get the TTN country code as an string
 # PARAMS: None
-# RETRUN: string country code value 
+# RETURN: string country code value 
 def getTTNCountryFromENV():
     try:
         country = os.getenv("COUNTRY")
@@ -55,32 +55,32 @@ def loadEnv(env_file_name):
         print(sys.exc_info())
         sys.exit()
 
-# Generate fake data body
+# generate fake data body
 # PARAMS: None
-# RETRUN: data encoded
+# RETURN: data encoded
 def getPayloadMockBMP388():
     press_val = bmp.pressure
     temp_val = bmp.temperature + temperature_offset
     alt_val = bmp.altitude
     return encodePayload(press_val,temp_val,alt_val)
 
-# Encodes payload
-# PARAMS: pressure, temperature, gas, altitude and humidity from BME 680 sensor
-# RETRUN: data encoded
+# encodes payload
+# PARAMS: pressure, temperature, and altitude from BME388 sensor
+# RETURN: data encoded
 def encodePayload(pressure,temperature,gas,altitude,humidity):
-    # Encode float as int
+    # encode float as int
     press_val = int(pressure * 100) 
     temp_val = int(temperature * 100)
     alt_val = int(altitude * 100)
     abs_temp_val = abs(temp_val)
 
-    # Encode payload as bytes
-    # Pressure (needs 3 bytes)
+    # encode payload as bytes
+    # pressure (needs 3 bytes)
     data[0] = (press_val >> 16) & 0xff
     data[1] = (press_val >> 8) & 0xff
     data[2] = press_val & 0xff
 
-    # Temperature (needs 3 bytes 327.67 max value) (signed int)
+    # temperature (needs 3 bytes 327.67 max value) (signed int)
     if(temp_val < 0):
         data[3] = 1 & 0xff
     else:
@@ -88,14 +88,14 @@ def encodePayload(pressure,temperature,gas,altitude,humidity):
     data[4] = (abs_temp_val >> 8) & 0xff
     data[5] = abs_temp_val & 0xff
 
-    # Altitude (needs 3 bytes)
+    # altitude (needs 3 bytes)
     data[6] = (alt_val >> 16) & 0xff
     data[7] = (alt_val >> 8) & 0xff
     data[8] = alt_val & 0xff
 
     return data
 
-# Send data
+# send data
 # PARAMS: data
 # RETURN: None
 def sendDataTTN(data):
@@ -105,29 +105,29 @@ def sendDataTTN(data):
     display.text('Packet sent', 10, 0, 1)
     display.show()
 
-#init env 
+# init env 
 loadEnv('.env')
 loadEnv('.env.dynamic')
 
-#Link Buttons
-btnA = DigitalInOut(board.D5) # Button A
+# link buttons
+btnA = DigitalInOut(board.D5) # button A
 btnA.direction = Direction.INPUT
 btnA.pull = Pull.UP
-btnB = DigitalInOut(board.D6) # Button B
+btnB = DigitalInOut(board.D6) # button B
 btnB.direction = Direction.INPUT
 btnB.pull = Pull.UP
-btnC = DigitalInOut(board.D12) # Button C
+btnC = DigitalInOut(board.D12) # button C
 btnC.direction = Direction.INPUT
 btnC.pull = Pull.UP
  
-# Create the I2C interface.
+# create the I2C interface.
 i2c = busio.I2C(board.SCL, board.SDA)
  
-# 128x32 OLED Display
+# 128x32 OLED display
 reset_pin = DigitalInOut(board.D4)
 display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, reset=reset_pin)
 
-# Create library object using our Bus I2C port
+# create library object using our bus I2C port
 bmp = adafruit_bmp3xx.BMP3xx_I2C(i2c)
 
 # change this to match the location's pressure (hPa) at sea level
@@ -136,37 +136,37 @@ bmp.sea_level_pressure = 1013.25
 bmp.pressure_oversampling = 1
 bmp.temperature_oversampling = 1
 
-# You will usually have to add an offset to account for the temperature of
+# you will usually have to add an offset to account for the temperature of
 # the sensor. This is usually around 5 degrees but varies by use. Use a
 # separate temperature sensor to calibrate this one.
 temperature_offset = -5
 
-# Clear the display.
+# clear the display.
 display.fill(0)
 display.show()
 width = display.width
 height = display.height
  
-# TinyLoRa Configuration
+# TinyLoRa configuration
 spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
 cs = DigitalInOut(board.CE1)
 irq = DigitalInOut(board.D22)
 rst = DigitalInOut(board.D25)
 
-# Retrieve TTN Keys from environment
-# TTN Device Address, 4 Bytes, MSB
+# retrieve TTN Keys from environment
+# TTN device Address, 4 Bytes, MSB
 devaddr = getTTNKey("DEVADDR")
-# TTN Network Key, 16 Bytes, MSB
+# TTN network Key, 16 Bytes, MSB
 nwkey = getTTNKey("NWKEY")
-# TTN Application Key, 16 Bytess, MSB
+# TTN application Key, 16 Bytess, MSB
 app = getTTNKey("APP")
 
-# Initialize ThingsNetwork configuration
+# initialize ThingsNetwork configuration
 ttn_config = TTN(devaddr, nwkey, app, country=getTTNCountryFromENV())
-# Initialize lora object
+# initialize lora object
 lora = TinyLoRa(spi, cs, irq, rst, ttn_config)
-# 2b array to store sensor data
 
+# 2b array to store sensor data
 data = bytearray(14)
 
 while True:

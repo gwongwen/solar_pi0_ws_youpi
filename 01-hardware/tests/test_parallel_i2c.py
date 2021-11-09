@@ -5,7 +5,7 @@ from adafruit_tinylora.adafruit_tinylora import TTN, TinyLoRa
 from pathlib import Path
 from busio import I2C
 
-# Link Buttons
+# link buttons
 btnA = DigitalInOut(board.D5) # Button A
 btnA.direction = Direction.INPUT
 btnA.pull = Pull.UP
@@ -16,10 +16,10 @@ btnC = DigitalInOut(board.D12) # Button C
 btnC.direction = Direction.INPUT
 btnC.pull = Pull.UP
  
-# Create the I2C interface.
+# create the I2C interface.
 i2c = busio.I2C(board.SCL, board.SDA)
 
-# Create library object using our Bus I2C port
+# create library object using our Bus I2C port
 bmp = adafruit_bmp3xx.BMP3XX_I2C(i2c)
 
 # change this to match the location's pressure (hPa) at sea level
@@ -37,13 +37,13 @@ temperature_offset = -5
 reset_pin = DigitalInOut(board.D4)
 display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, reset=reset_pin)
 
-# Clear the display.
+# clear the display.
 display.fill(0)
 display.show()
 width = display.width
 height = display.height
  
-# TinyLoRa Configuration
+# TinyLoRa configuration
 spi = busio.SPI(board.SCK, MOSI=board.MOSI, MISO=board.MISO)
 
 while True:
