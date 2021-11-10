@@ -69,11 +69,11 @@ if [ $BATT -lt 3.45 ]; then
 else
     echo "run python script to read sensor and send data to TTN"
     # initialisation of our raspberry pi zero
-	cd /home/pi/solar_pi0_ws_youpi/03-run/rasp_side/gateway_mode
+	cd /home/pi/solar_pi0_ws_youpi/03-run/raspi_side/gateway_mode
 	bash run_gateway_node.js
 	cd ..
 	# run measurement program and enable mqtt server
-	cd /home/pi/solar_pi0_ws_youpi/03-run/rasp_side/sensor_mode
+	cd /home/pi/solar_pi0_ws_youpi/03-run/raspi_side/sensor_mode
 	sudo mqtt_client.py
     sudo python pi_pp_bmp388.py
 fi
