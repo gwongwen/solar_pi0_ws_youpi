@@ -66,7 +66,7 @@ def getPayloadMockBMP388():
 # encodes payload
 # PARAMS: pressure, temperature, and altitude from BME388 sensor
 # RETURN: data encoded
-def encodePayload(pressure,temperature,gas,altitude,humidity):
+def encodePayload(pressure,temperature,altitude):
     # encode float as int
     press_val = int(pressure * 100) 
     temp_val = int(temperature * 100)
