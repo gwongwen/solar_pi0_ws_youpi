@@ -149,7 +149,7 @@ lora = TinyLoRa(spi, cs, irq, rst, ttn_config)
 # 2b array to store sensor data
 data = bytearray(14)
 
-while True:
+for meas in range (0, 3, 1):
     packet = None
     sendDataTTN(getPayloadMockBMP388())
     time.sleep(5)

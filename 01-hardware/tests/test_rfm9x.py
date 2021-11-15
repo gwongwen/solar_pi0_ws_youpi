@@ -52,7 +52,7 @@ while True:
 
     # attempt to set up the RFM9x Module
     try:
-        rfm9x = adafruit_rfm9x.RFM9x(spi, CS, RESET, 915.0)
+        rfm9x = adafruit_rfm9x.RFM9x(spi, CS, RESET, 868.0)
         display.text('RFM9x: Detected', 0, 0, 1)
     except RuntimeError as error:
         # thrown on version mismatch
