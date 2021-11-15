@@ -40,7 +40,7 @@ As the downlink with LoRa is not a possibility, the LoRa node will retrieve the 
 
 ## Step 3 : Configuration of the Pi Zero W  as a gateway
 
-To configure the raspberry as a gateway, you have to install the requirements script in **02-configuration/raspberry/gateway**.
+To configure the raspberry as a gateway, you have to install the requirements script in **02-configuration/raspberry**.
 
 To run as sudo user, tape : **sudo \\.pp_gtw_config_install.sh** or **sudo bash gtw_config_install.sh**
 

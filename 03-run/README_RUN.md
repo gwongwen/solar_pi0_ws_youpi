@@ -13,10 +13,10 @@ As the downlink with lora is not a possibility, the lora node will retrieve the 
 - Sleep time reconfiguration: Time to the next time the board will turn herself on. Thiw will be used by the on_init script. The message will follow the structure: ***reconfig_sleep_time;15*** being the second parameter the time in seconds.
 
 ### Sensor controller service (on your server)
-To begin, you need to install docker and mqtt with the scripts on **02-initial_configuration/serer** and the python dependencies. Then, the python service to run will be located in **03-src_project/server_side/controller_service.py**
+To begin, you need to install docker and mqtt with the scripts on **02-configuration/serer** and the python dependencies. Then, the python service to run will be located in **03-run/server_side/controller_service.py**
 
 ### Gateway (receiver) 
-To configure the raspberry as a gateway, you have to follow the instructions and install the requirements in **02-initial_configuration/raspberry/gateway**. Then, to run the service, execute the file in **03-src_project/raspi-side/gateway_mode/run_gateway_node.sh** 
+To configure the raspberry as a gateway, you have to follow the instructions and install the requirements in **02-configuration/raspberry**. Then, to run the service, execute the file in **03-run/raspi_side/gateway_mode/run_gateway_node.sh** 
 
 ### TO DO:
 ### improve the on_init script and, then, push it in bin/bash
