@@ -67,7 +67,7 @@ def getPayloadMockBMP388():
 # Encodes payload
 # PARAMS: pressure, temperature, gas, altitude and humidity from BME 680 sensor
 # RETRUN: data encoded
-def encodePayload(pressure,temperature,gas,altitude,humidity):
+def encodePayload(pressure,temperature,altitude):
     # Encode float as int
     press_val = int(pressure * 100) 
     temp_val = int(temperature * 100)
@@ -110,10 +110,10 @@ loadEnv('.env')
 loadEnv('.env.dynamic')
  
 # Create the I2C interface.
-i2c = busio.I2C(board.SCL, board.SDA)
+i2c = busio.I2C()
  
 # Create library object using our Bus I2C port
-bmp = adafruit_bmp3xx.BMP3xx_I2C(i2c)
+bmp = adafruit_bmp3xx.BMP3XX_I2C(i2c)
 
 # change this to match the location's pressure (hPa) at sea level
 bmp.sea_level_pressure = 1013.25
@@ -142,10 +142,11 @@ app = getTTNKey("APP")
 
 # Initialize ThingsNetwork configuration
 ttn_config = TTN(devaddr, nwkey, app, country=getTTNCountryFromENV())
+
 # Initialize lora object
 lora = TinyLoRa(spi, cs, irq, rst, ttn_config)
-# 2b array to store sensor data
 
+# 2b array to store sensor data
 data = bytearray(14)
 
 while True:
