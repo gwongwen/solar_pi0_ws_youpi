@@ -1,9 +1,8 @@
 from dotenv import load_dotenv
-import threading,time,subprocess,busio,board,adafruit_ssd1306,os,sys,random
+import threading, time, subprocess, busio, board, adafruit_ssd1306, adafruit_bmp3xx, os, sys, random
 from digitalio import DigitalInOut, Direction, Pull
 from adafruit_tinylora.adafruit_tinylora import TTN, TinyLoRa
 from pathlib import Path
-import adafruit_bmp3xx
 
 # updates the sleep time on the environment and on the 
 # .env.dynamic file
@@ -120,15 +119,15 @@ btnC = DigitalInOut(board.D12) # button C
 btnC.direction = Direction.INPUT
 btnC.pull = Pull.UP
  
-# create the I2C interface.
-i2c = busio.I2C(board.SCL, board.SDA)
+# create the i2c interface
+i2c = board.I2C()   # uses board.SCL and board.SDA
  
 # 128x32 OLED display
 reset_pin = DigitalInOut(board.D4)
 display = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, reset=reset_pin)
 
-# create library object using our bus I2C port
-bmp = adafruit_bmp3xx.BMP3xx_I2C(i2c)
+# create library object using our Bus I2C port
+bmp = adafruit_bmp3xx.BMP3XX_I2C(i2c)
 
 # change this to match the location's pressure (hPa) at sea level
 bmp.sea_level_pressure = 1013.25

@@ -5,7 +5,6 @@
 import time
 import board
 import adafruit_bmp3xx
-from busio import I2C
 
 # create library object using our Bus I2C port
 i2c = board.I2C()  # uses board.SCL and board.SDA
