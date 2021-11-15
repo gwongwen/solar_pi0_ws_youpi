@@ -1,7 +1,7 @@
 # install dependencies
 sudo apt-get update
 sudo apt-get -y install build-essential
-sudo apt-get -y install libpcre3 libpcre3-dev cmake autotools-dev nodejs-dev automake python-dev bison
+sudo apt-get -y install libpcre3 libpcre3-dev cmake autotools-dev libnode-dev automake python-dev bison
 cd ~
 mkdir -p src
 
