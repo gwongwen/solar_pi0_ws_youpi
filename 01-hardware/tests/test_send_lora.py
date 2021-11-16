@@ -166,7 +166,7 @@ ttn_config = TTN(devaddr, nwkey, app, country=getTTNCountryFromENV())
 lora = TinyLoRa(spi, cs, irq, rst, ttn_config)
 
 # 2b array to store sensor data
-data = bytearray(14)
+data = bytearray(9)
 
 for meas in range (0, 15, 1):
     packet = None
