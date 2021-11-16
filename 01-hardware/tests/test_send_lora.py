@@ -168,7 +168,7 @@ lora = TinyLoRa(spi, cs, irq, rst, ttn_config)
 # 2b array to store sensor data
 data = bytearray(14)
 
-for meas in rane (0, 3, 1):
+for meas in range (0, 15, 1):
     packet = None
     # draw a box to clear the image
     display.fill(0)
