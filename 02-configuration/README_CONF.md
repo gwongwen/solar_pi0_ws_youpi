@@ -18,12 +18,16 @@ You will need to register a new device in your application (with ABP activation 
 
     - After you account was created, you have to create a new application : Name of this application --> solar-pi0-ws-app
 
-    - After that, you have to add a new end device on this application. You have to complete the various fields using the available file .env in /01-hardware/basic tests folder :
-        Application ID          solar-pi0-ws-app
-        DevUI                   006DFBA9FB0DB174
-        Device                  26013D54
-        NwkSKey                 0FFEDF1D366D518976D776BB92A59AE9
-        AppSKey                 4AD7B63F86ABC754CF268EE560DE1C99
+    - After that, you have to add a new end device on this application. You have to complete the various fields using the available file .env in **/01-hardware/tests** in manually mode :
+        Frequency Plan                  Europe 863-870 MHz (SF9 for RX2 - Recommanded)
+        LoRaWAN Version                 MAC V1.0.2
+        Regional Parameter Version      PHY V1.0.2 REB B
+        Activation by personalization   ABP
+        Application ID                  solar-pi0-ws-app
+        DevUI                           70B3D57ED00485A9
+        Device                          26013D54
+        NwkSKey                         0FFEDF1D366D518976D776BB92A59AE9
+        AppSKey                         4AD7B63F86ABC754CF268EE560DE1C99
 
     - After that, you have to add a gateway :
         Gateway ID              sola-pi0-ws-gtw
