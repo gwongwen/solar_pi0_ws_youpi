@@ -18,7 +18,7 @@ You will need to register a new device in your application (with ABP activation 
 
     - After you account was created, you have to create a new application : Name of this application --> solar-pi0-ws-app
 
-    - After that, you have to add a new end device on this application. You have to complete the various fields using the available file .env in **/01-hardware/tests** in manually mode :
+    - After that, you have to add a new end device on this application. You have to complete the various fields using the available file .env in 01-hardware/tests in manually mode :
         Frequency Plan                  Europe 863-870 MHz (SF9 for RX2 - Recommanded)
         LoRaWAN Version                 MAC V1.0.2
         Regional Parameter Version      PHY V1.0.2 REB B
